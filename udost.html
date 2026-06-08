@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<title>Удостоверение личности</title>
+
+<style>
+:root {
+  --primary-red: #2B6BCC;
+  --bg-gray: #f2f2f7;
+  --text-main: #000000;
+  --text-gray: #8e8e93;
+  --white: #ffffff;
+}
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+html, body { 
+  background: #fff; 
+  margin: 0; 
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+  background-color: var(--white);
+  color: var(--text-main);
+  padding-bottom: 80px;
+}
+
+/* HEADER */
+.header-top {
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.header-back {
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.header-back img {
+  width: 24px;
+  height: 24px;
+}
+
+.header-title {
+  font-size: 17px;
+  font-weight: 600;
+  flex: 1;
+  text-align: center;
+}
+
+.header-spacer {
+  width: 40px;
+}
+
+/* TABS */
+.tabs-container {
+  display: flex;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.tab {
+  flex: 1;
+  padding: 14px 0;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-gray);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+}
+
+.tab.active {
+  color: #2B6BCC;
+  border-bottom: 2px solid #2B6BCC;
+}
+
+/* CONTENT */
+.content-section {
+  padding: 20px 16px;
+  display: none;
+}
+
+.content-section.active {
+  display: block;
+}
+
+/* UPLOAD AREA */
+.upload-area {
+  border: 2px dashed #d1d1d6;
+  border-radius: 12px;
+  padding: 40px 20px;
+  text-align: center;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.upload-area:hover {
+  border-color: #2B6BCC;
+}
+
+.upload-icon {
+  font-size: 48px;
+  margin-bottom: 12px;
+}
+
+.upload-text {
+  color: var(--text-gray);
+  font-size: 15px;
+  margin-bottom: 8px;
+}
+
+.upload-subtext {
+  color: var(--text-gray);
+  font-size: 13px;
+}
+
+#file-input {
+  display: none;
+}
+
+/* PREVIEW */
+.preview-container {
+  margin-bottom: 20px;
+  display: none;
+}
+
+.preview-image {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  border-radius: 12px;
+  margin: 0 auto;
+  display: block;
+  touch-action: pinch-zoom;
+  cursor: zoom-in;
+}
+
+.remove-btn {
+  display: block;
+  margin: 10px auto 0;
+  padding: 8px 16px;
+  background: #f2f2f7;
+  border: none;
+  border-radius: 8px;
+  color: #2B6BCC;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* BUTTONS */
+.buttons-container {
+  padding: 0 16px;
+  margin-top: 20px;
+}
+
+.primary-btn {
+  width: 100%;
+  padding: 14px;
+  background: #2B6BCC;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.primary-btn:active {
+  opacity: 0.8;
+}
+
+.secondary-btn {
+  width: 100%;
+  padding: 14px;
+  background: #ffffff;
+  color: #2B6BCC;
+  border: 2px solid #2B6BCC;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.secondary-btn:active {
+  opacity: 0.8;
+}
+
+/* REKVIZIT FORM */
+.form-group {
+  margin-bottom: 16px;
+  position: relative;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: var(--text-gray);
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px 40px 12px 16px;
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  font-size: 16px;
+  background: #f9f9f9;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #2B6BCC;
+  background: white;
+}
+
+.copy-icon {
+  position: absolute;
+  right: 12px;
+  top: 38px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.copy-icon:hover {
+  opacity: 1;
+}
+</style>
+</head>
+<body>
+
+<div class="header-top">
+  <button class="header-back" onclick="goBack()">
+    <img src="kaspi.kz_files/arrow.png" alt="">
+  </button>
+  <div class="header-title">Удостоверение личности</div>
+  <div class="header-spacer"></div>
+</div>
+
+<div class="tabs-container">
+  <div class="tab active" onclick="switchTab('document')">Документ</div>
+  <div class="tab" onclick="switchTab('rekvizit')">Реквизиты</div>
+</div>
+
+<!-- DOCUMENT TAB -->
+<div class="content-section active" id="document-section">
+  <div class="upload-area" onclick="document.getElementById('file-input').click()">
+    <div class="upload-icon">📷</div>
+    <div class="upload-text">Нажмите для загрузки</div>
+    <div class="upload-subtext">PNG, JPG до 10MB</div>
+  </div>
+  
+  <input type="file" id="file-input" accept="image/*" onchange="handleFileUpload(event)">
+  
+  <div class="preview-container" id="preview-container">
+    <img class="preview-image" id="preview-image" src="" alt="">
+  </div>
+  
+  <div class="buttons-container">
+    <button class="primary-btn" onclick="presentDocument()">
+      <img src="qr.png" style="width: 24px; height: 24px;">
+      Предъявить документ
+    </button>
+    <button class="secondary-btn" onclick="switchTab('rekvizit')">
+      <img src="rekvezits.png" style="width: 24px; height: 24px;">
+      Отправить реквизиты
+    </button>
+  </div>
+</div>
+
+<!-- REKVIZIT TAB -->
+<div class="content-section" id="rekvizit-section">
+  <div class="form-group">
+    <label class="form-label">ИИН</label>
+    <input type="text" class="form-input" id="iin-input" placeholder="12 цифр" maxlength="12">
+    <img src="copy.png" class="copy-icon" onclick="copyToClipboard('iin-input')">
+  </div>
+  
+  <div class="form-group">
+    <label class="form-label">Фамилия</label>
+    <input type="text" class="form-input" id="surname-input" placeholder="Введите фамилию">
+    <img src="copy.png" class="copy-icon" onclick="copyToClipboard('surname-input')">
+  </div>
+  
+  <div class="form-group">
+    <label class="form-label">Имя</label>
+    <input type="text" class="form-input" id="name-input" placeholder="Введите имя">
+    <img src="copy.png" class="copy-icon" onclick="copyToClipboard('name-input')">
+  </div>
+  
+  <div class="form-group">
+    <label class="form-label">Отчество</label>
+    <input type="text" class="form-input" id="patronymic-input" placeholder="Введите отчество">
+    <img src="copy.png" class="copy-icon" onclick="copyToClipboard('patronymic-input')">
+  </div>
+  
+  <div class="form-group">
+    <label class="form-label">Дата рождения</label>
+    <input type="date" class="form-input" id="birthdate-input">
+    <img src="copy.png" class="copy-icon" onclick="copyToClipboard('birthdate-input')">
+  </div>
+  
+  <div class="buttons-container">
+    <button class="primary-btn" onclick="saveRekvizit()">Сохранить реквизиты</button>
+  </div>
+</div>
+
+<script>
+// Load saved data on page load
+window.onload = function() {
+  loadSavedImage();
+  loadSavedRekvizit();
+};
+
+function switchTab(tab) {
+  // Update tabs
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  event.target.classList.add('active');
+  
+  // Update content
+  document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+  document.getElementById(tab + '-section').classList.add('active');
+}
+
+function handleFileUpload(event) {
+  const file = event.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const imageData = e.target.result;
+      
+      // Save to localStorage
+      localStorage.setItem('uploadedImage', imageData);
+      
+      // Show preview
+      document.getElementById('preview-image').src = imageData;
+      document.getElementById('preview-container').style.display = 'block';
+      document.querySelector('.upload-area').style.display = 'none';
+      
+      // Setup pinch-to-zoom
+      setupPinchZoom();
+    };
+    reader.readAsDataURL(file);
+  }
+}
+
+function copyToClipboard(inputId) {
+  const input = document.getElementById(inputId);
+  input.select();
+  input.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(input.value).then(() => {
+    alert('Скопировано!');
+  });
+}
+
+// Pinch-to-zoom functionality
+let scale = 1;
+let pannedX = 0;
+let pannedY = 0;
+let startX = 0;
+let startY = 0;
+let isDragging = false;
+
+function setupPinchZoom() {
+  const previewImage = document.getElementById('preview-image');
+  if (!previewImage) return;
+
+  let initialDistance = 0;
+  let initialScale = 1;
+
+  previewImage.addEventListener('touchstart', function(e) {
+    if (e.touches.length === 2) {
+      initialDistance = Math.hypot(
+        e.touches[0].clientX - e.touches[1].clientX,
+        e.touches[0].clientY - e.touches[1].clientY
+      );
+      initialScale = scale;
+    } else if (e.touches.length === 1) {
+      isDragging = true;
+      startX = e.touches[0].clientX - pannedX;
+      startY = e.touches[0].clientY - pannedY;
+    }
+  });
+
+  previewImage.addEventListener('touchmove', function(e) {
+    e.preventDefault();
+    
+    if (e.touches.length === 2) {
+      const currentDistance = Math.hypot(
+        e.touches[0].clientX - e.touches[1].clientX,
+        e.touches[0].clientY - e.touches[1].clientY
+      );
+      
+      scale = initialScale * (currentDistance / initialDistance);
+      scale = Math.min(Math.max(scale, 1), 5); // Limit zoom between 1x and 5x
+      
+      updateImageTransform();
+    } else if (e.touches.length === 1 && isDragging) {
+      pannedX = e.touches[0].clientX - startX;
+      pannedY = e.touches[0].clientY - startY;
+      updateImageTransform();
+    }
+  });
+
+  previewImage.addEventListener('touchend', function() {
+    isDragging = false;
+  });
+
+  // Double tap to reset zoom
+  let lastTap = 0;
+  previewImage.addEventListener('touchend', function(e) {
+    const currentTime = new Date().getTime();
+    const tapLength = currentTime - lastTap;
+    if (tapLength < 300 && tapLength > 0) {
+      scale = 1;
+      pannedX = 0;
+      pannedY = 0;
+      updateImageTransform();
+    }
+    lastTap = currentTime;
+  });
+}
+
+function updateImageTransform() {
+  const previewImage = document.getElementById('preview-image');
+  if (previewImage) {
+    previewImage.style.transform = `scale(${scale}) translate(${pannedX / scale}px, ${pannedY / scale}px)`;
+    previewImage.style.transformOrigin = 'center center';
+  }
+}
+
+function loadSavedImage() {
+  const savedImage = localStorage.getItem('uploadedImage');
+  if (savedImage) {
+    document.getElementById('preview-image').src = savedImage;
+    document.getElementById('preview-container').style.display = 'block';
+    document.querySelector('.upload-area').style.display = 'none';
+    setupPinchZoom();
+  }
+}
+
+function removeImage() {
+  localStorage.removeItem('uploadedImage');
+  document.getElementById('preview-image').src = '';
+  document.getElementById('preview-container').style.display = 'none';
+  document.querySelector('.upload-area').style.display = 'block';
+  document.getElementById('file-input').value = '';
+}
+
+function presentDocument() {
+  const savedImage = localStorage.getItem('uploadedImage');
+  if (savedImage) {
+    alert('Документ предъявлен!');
+  } else {
+    alert('Сначала загрузите документ');
+  }
+}
+
+function loadSavedRekvizit() {
+  const rekvizit = JSON.parse(localStorage.getItem('rekvizit') || '{}');
+  const rekvizitSaved = localStorage.getItem('rekvizitSaved');
+  
+  if (rekvizit.iin) document.getElementById('iin-input').value = rekvizit.iin;
+  if (rekvizit.surname) document.getElementById('surname-input').value = rekvizit.surname;
+  if (rekvizit.name) document.getElementById('name-input').value = rekvizit.name;
+  if (rekvizit.patronymic) document.getElementById('patronymic-input').value = rekvizit.patronymic;
+  if (rekvizit.birthdate) document.getElementById('birthdate-input').value = rekvizit.birthdate;
+  
+  // Если реквизиты уже сохранены, делаем поля только для чтения и скрываем кнопку
+  if (rekvizitSaved === 'true') {
+    makeFieldsReadOnly();
+    document.querySelector('#rekvizit-section .buttons-container').style.display = 'none';
+  }
+}
+
+function makeFieldsReadOnly() {
+  document.getElementById('iin-input').readOnly = true;
+  document.getElementById('surname-input').readOnly = true;
+  document.getElementById('name-input').readOnly = true;
+  document.getElementById('patronymic-input').readOnly = true;
+  document.getElementById('birthdate-input').readOnly = true;
+}
+
+function saveRekvizit() {
+  const rekvizit = {
+    iin: document.getElementById('iin-input').value,
+    surname: document.getElementById('surname-input').value,
+    name: document.getElementById('name-input').value,
+    patronymic: document.getElementById('patronymic-input').value,
+    birthdate: document.getElementById('birthdate-input').value
+  };
+  
+  localStorage.setItem('rekvizit', JSON.stringify(rekvizit));
+  localStorage.setItem('rekvizitSaved', 'true');
+  
+  // Делаем поля только для чтения
+  makeFieldsReadOnly();
+  
+  // Скрываем кнопку сохранения
+  document.querySelector('#rekvizit-section .buttons-container').style.display = 'none';
+  
+  alert('Реквизиты сохранены!');
+}
+
+let saveClickCount = 0;
+let saveClickTimeout = null;
+
+function saveRekvizit() {
+  // Сброс счетчика если прошло больше 2 секунд
+  if (saveClickTimeout) {
+    clearTimeout(saveClickTimeout);
+  }
+  
+  saveClickCount++;
+  
+  // Если нажали 5 раз за 2 секунды - сбрасываем
+  if (saveClickCount >= 5) {
+    localStorage.removeItem('rekvizit');
+    localStorage.removeItem('rekvizitSaved');
+    
+    // Очищаем поля
+    document.getElementById('iin-input').value = '';
+    document.getElementById('surname-input').value = '';
+    document.getElementById('name-input').value = '';
+    document.getElementById('patronymic-input').value = '';
+    document.getElementById('birthdate-input').value = '';
+    
+    // Делаем поля редактируемыми
+    document.getElementById('iin-input').readOnly = false;
+    document.getElementById('surname-input').readOnly = false;
+    document.getElementById('name-input').readOnly = false;
+    document.getElementById('patronymic-input').readOnly = false;
+    document.getElementById('birthdate-input').readOnly = false;
+    
+    // Показываем кнопку сохранения
+    document.querySelector('#rekvizit-section .buttons-container').style.display = 'block';
+    
+    saveClickCount = 0;
+    alert('Реквизиты сброшены!');
+    return;
+  }
+  
+  // Устанавливаем таймер для сброса счетчика через 2 секунды
+  saveClickTimeout = setTimeout(() => {
+    saveClickCount = 0;
+  }, 2000);
+  
+  // Обычное сохранение
+  const rekvizit = {
+    iin: document.getElementById('iin-input').value,
+    surname: document.getElementById('surname-input').value,
+    name: document.getElementById('name-input').value,
+    patronymic: document.getElementById('patronymic-input').value,
+    birthdate: document.getElementById('birthdate-input').value
+  };
+  
+  localStorage.setItem('rekvizit', JSON.stringify(rekvizit));
+  localStorage.setItem('rekvizitSaved', 'true');
+  
+  // Делаем поля только для чтения
+  makeFieldsReadOnly();
+  
+  // Скрываем кнопку сохранения
+  document.querySelector('#rekvizit-section .buttons-container').style.display = 'none';
+  
+  alert('Реквизиты сохранены!');
+}
+
+let presentClickCount = 0;
+let presentClickTimeout = null;
+
+function presentDocument() {
+  const savedImage = localStorage.getItem('uploadedImage');
+  
+  // Сброс счетчика если прошло больше 2 секунд
+  if (presentClickTimeout) {
+    clearTimeout(presentClickTimeout);
+  }
+  
+  presentClickCount++;
+  
+  // Если нажали 5 раз за 2 секунды - сбрасываем
+  if (presentClickCount >= 5) {
+    localStorage.removeItem('uploadedImage');
+    document.getElementById('preview-image').src = '';
+    document.getElementById('preview-container').style.display = 'none';
+    document.querySelector('.upload-area').style.display = 'block';
+    document.getElementById('file-input').value = '';
+    
+    presentClickCount = 0;
+    alert('Документ сброшен!');
+    return;
+  }
+  
+  // Устанавливаем таймер для сброса счетчика через 2 секунды
+  presentClickTimeout = setTimeout(() => {
+    presentClickCount = 0;
+  }, 2000);
+  
+  if (savedImage) {
+    alert('Документ предъявлен!');
+  } else {
+    alert('Сначала загрузите документ');
+  }
+}
+</script>
+
+</body>
+</html>
