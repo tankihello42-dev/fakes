@@ -132,6 +132,14 @@ body {
 .preview-container {
   margin-bottom: 20px;
   display: none;
+  width: 100%;
+  max-width: 300px;
+  height: 300px;
+  overflow: hidden;
+  border-radius: 12px;
+  margin: 0 auto;
+  position: relative;
+  background: #f5f5f5;
 }
 
 .preview-image {
@@ -141,8 +149,14 @@ body {
   border-radius: 12px;
   margin: 0 auto;
   display: block;
-  touch-action: pinch-zoom;
-  cursor: zoom-in;
+  touch-action: none;
+  cursor: grab;
+  transform-origin: center center;
+  transition: transform 0.1s ease-out;
+}
+
+.preview-image:active {
+  cursor: grabbing;
 }
 
 .remove-btn {
@@ -251,7 +265,7 @@ body {
 
 <div class="header-top">
   <button class="header-back" onclick="goBack()">
-    <img src="kaspi.kz_files/arrow.png" alt="">
+    <img src="main/kaspi.kz_files/arrow.png" alt="">
   </button>
   <div class="header-title">Удостоверение личности</div>
   <div class="header-spacer"></div>
@@ -383,7 +397,8 @@ let isDragging = false;
 
 function setupPinchZoom() {
   const previewImage = document.getElementById('preview-image');
-  if (!previewImage) return;
+  const previewContainer = document.getElementById('preview-container');
+  if (!previewImage || !previewContainer) return;
 
   let initialDistance = 0;
   let initialScale = 1;
@@ -415,9 +430,18 @@ function setupPinchZoom() {
       scale = Math.min(Math.max(scale, 1), 5); // Limit zoom between 1x and 5x
       
       updateImageTransform();
-    } else if (e.touches.length === 1 && isDragging) {
+    } else if (e.touches.length === 1 && isDragging && scale > 1) {
       pannedX = e.touches[0].clientX - startX;
       pannedY = e.touches[0].clientY - startY;
+      
+      // Limit panning within container bounds
+      const containerRect = previewContainer.getBoundingClientRect();
+      const maxPanX = (containerRect.width * (scale - 1)) / 2;
+      const maxPanY = (containerRect.height * (scale - 1)) / 2;
+      
+      pannedX = Math.max(-maxPanX, Math.min(maxPanX, pannedX));
+      pannedY = Math.max(-maxPanY, Math.min(maxPanY, pannedY));
+      
       updateImageTransform();
     }
   });
@@ -439,13 +463,54 @@ function setupPinchZoom() {
     }
     lastTap = currentTime;
   });
+
+  // Mouse support for desktop
+  previewImage.addEventListener('mousedown', function(e) {
+    if (scale > 1) {
+      isDragging = true;
+      startX = e.clientX - pannedX;
+      startY = e.clientY - pannedY;
+    }
+  });
+
+  previewImage.addEventListener('mousemove', function(e) {
+    if (isDragging && scale > 1) {
+      pannedX = e.clientX - startX;
+      pannedY = e.clientY - startY;
+      
+      // Limit panning within container bounds
+      const containerRect = previewContainer.getBoundingClientRect();
+      const maxPanX = (containerRect.width * (scale - 1)) / 2;
+      const maxPanY = (containerRect.height * (scale - 1)) / 2;
+      
+      pannedX = Math.max(-maxPanX, Math.min(maxPanX, pannedX));
+      pannedY = Math.max(-maxPanY, Math.min(maxPanY, pannedY));
+      
+      updateImageTransform();
+    }
+  });
+
+  previewImage.addEventListener('mouseup', function() {
+    isDragging = false;
+  });
+
+  previewImage.addEventListener('mouseleave', function() {
+    isDragging = false;
+  });
+
+  // Mouse wheel zoom
+  previewImage.addEventListener('wheel', function(e) {
+    e.preventDefault();
+    const delta = e.deltaY > 0 ? 0.9 : 1.1;
+    scale = Math.min(Math.max(scale * delta, 1), 5);
+    updateImageTransform();
+  });
 }
 
 function updateImageTransform() {
   const previewImage = document.getElementById('preview-image');
   if (previewImage) {
-    previewImage.style.transform = `scale(${scale}) translate(${pannedX / scale}px, ${pannedY / scale}px)`;
-    previewImage.style.transformOrigin = 'center center';
+    previewImage.style.transform = `scale(${scale}) translate(${pannedX}px, ${pannedY}px)`;
   }
 }
 

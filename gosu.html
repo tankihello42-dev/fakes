@@ -357,7 +357,7 @@ body {
 }
 
 @keyframes sk-shimmer{
-  0%    { left:-55%; }
+  0%   { left:-55%; }
   100% { left:110%; }
 }
 
@@ -459,37 +459,38 @@ body {
   .sk::after{ animation: none; display:none; }
 }
 
-.gos-docs-section { background: white; padding: 0 0 15px 0; border-bottom: 8px solid #f2f2f5; }
-.gos-docs-scroll { display: flex; overflow-x: auto; padding: 0 15px; gap: 10px; margin-bottom: 15px; scrollbar-width: none; }
-.gos-docs-scroll::-webkit-scrollbar { display: none; }
-.gos-doc-card { background: #f5f5f5; border-radius: 16px; padding: 15px; min-width: 135px; display: flex; flex-direction: column; gap: 12px; }
-.gos-doc-img { width: 66px; height: auto; object-fit: contain; }
-.gos-doc-title { font-size: 13px; font-weight: 500; color: #333; line-height: 1.3; }
+        .gos-docs-section { background: white; padding: 0 0 15px 0; border-bottom: 8px solid #f2f2f5; }
+        .gos-docs-scroll { display: flex; overflow-x: auto; padding: 0 15px; gap: 10px; margin-bottom: 15px; scrollbar-width: none; }
+        .gos-docs-scroll::-webkit-scrollbar { display: none; }
+        .gos-doc-card { background: #f5f5f5; border-radius: 16px; padding: 15px; min-width: 135px; display: flex; flex-direction: column; gap: 12px; }
+        .gos-doc-img { width: 66px; height: auto; object-fit: contain; }
+        .gos-doc-title { font-size: 13px; font-weight: 500; color: #333; line-height: 1.3; }
 
-.gos-cats-section { background: white; padding: 15px 0; border-bottom: 1px solid #f0f0f0; }
-.gos-cats-scroll { display: flex; justify-content: space-between; padding: 0 15px; }
-.gos-cat-item { display: flex; flex-direction: column; align-items: center; gap: 8px; width: 70px; position: relative; }
-.gos-cat-icon-bg { width: 58px; height: 58px; background: #f5f5f5; border-radius: 16px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-.gos-cat-icon { width: 100%; height: 100%; object-fit: cover; }
-.gos-cat-title { font-size: 12px; color: #555; text-align: center; }
-.gos-cat-item.active .gos-cat-title { color: #ff2d17; font-weight: 600; }
-.gos-cat-item.active::after { content: ''; position: absolute; bottom: -15px; left: 10px; right: 10px; height: 2px; background: #ff2d17; }
+        .gos-cats-section { background: white; padding: 15px 0; border-bottom: 1px solid #f0f0f0; }
+        .gos-cats-scroll { display: flex; justify-content: space-between; padding: 0 15px; }
+        .gos-cat-item { display: flex; flex-direction: column; align-items: center; gap: 8px; width: 70px; position: relative; }
+        .gos-cat-icon-bg { width: 58px; height: 58px; background: #f5f5f5; border-radius: 16px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .gos-cat-icon { width: 100%; height: 100%; object-fit: cover; }
+        .gos-cat-title { font-size: 12px; color: #555; text-align: center; }
+        .gos-cat-item.active .gos-cat-title { color: #ff2d17; font-weight: 600; }
+        .gos-cat-item.active::after { content: ''; position: absolute; bottom: -15px; left: 10px; right: 10px; height: 2px; background: #ff2d17; }
 
-.gos-list-section { background: white; padding: 0 15px; }
-.gos-list-title { font-size: 16px; font-weight: 700; padding: 20px 0 10px 0; }
-.gos-list-item { display: flex; align-items: center; padding: 14px 0; border-bottom: 1px solid #f5f5f5; gap: 15px; cursor: pointer; }
-.gos-list-icon-wrapper { width: 44px; height: 44px; flex-shrink: 0; border-radius: 12px; overflow: hidden; }
-.gos-list-icon { width: 100%; height: 100%; object-fit: cover; }
-.gos-list-text { flex: 1; }
-.gos-list-item-title { font-size: 15px; font-weight: 500; color: #222; line-height: 1.2; }
-.gos-list-item-sub { font-size: 12px; color: #8e8e93; margin-top: 2px; }
-.gos-badge { background: #ff2d17; color: white; font-size: 10px; font-weight: 700; padding: 3px 6px; border-radius: 6px; margin-right: 5px; }
-.gos-arrow { color: #c7c7cc; font-size: 20px; }
+        .gos-list-section { background: white; padding: 0 15px; }
+        .gos-list-title { font-size: 16px; font-weight: 700; padding: 20px 0 10px 0; }
+        .gos-list-item { display: flex; align-items: center; padding: 14px 0; border-bottom: 1px solid #f5f5f5; gap: 15px; cursor: pointer; }
+        .gos-list-icon-wrapper { width: 44px; height: 44px; flex-shrink: 0; border-radius: 12px; overflow: hidden; }
+        .gos-list-icon { width: 100%; height: 100%; object-fit: cover; }
+        .gos-list-text { flex: 1; }
+        .gos-list-item-title { font-size: 15px; font-weight: 500; color: #222; line-height: 1.2; }
+        .gos-list-item-sub { font-size: 12px; color: #8e8e93; margin-top: 2px; }
+        .gos-badge { background: #ff2d17; color: white; font-size: 10px; font-weight: 700; padding: 3px 6px; border-radius: 6px; margin-right: 5px; }
+        .gos-arrow { color: #c7c7cc; font-size: 20px; }
 </style>
 </head>
 
 <body>
 
+<!-- SKELETON SCREEN -->
 <div id="skeleton" class="skeleton-screen" aria-hidden="true">
   <div class="sk-row sk-header">
     <div class="sk sk-icon"></div>
@@ -575,6 +576,7 @@ body {
   <div class="sk-bottom-gap"></div>
 </div>
 
+<!-- ТВОЙ LOADING OVERLAY (на переход) -->
 <div id="loading-overlay">
   <div id="progress-screen">
     <div id="progress-bar-container">
@@ -582,13 +584,13 @@ body {
     </div>
   </div>
   <div id="photo-screen">
-    <img src="./loading.png" alt="" id="loading-photo">
+    <img src="main/loading.png" alt="" id="loading-photo">
   </div>
 </div>
 
 <div class="header-top">
-  <button class="header-back" type="button" onclick="location.href='./index.html'">
-    <img src="./kaspi.kz_files/arrow.png" alt="">
+  <button class="header-back" type="button" onclick="location.href='index.html'">
+    <img src="main/kaspi.kz_files/arrow.png" alt="">
   </button>
   <div class="header-title">Госуслуги</div>
   <div style="width: 24px;"></div>
@@ -613,57 +615,85 @@ body {
 
 <div class="gos-docs-section">
     <div class="gos-docs-scroll">
-        <div class="gos-doc-card"><a href="./udost.html" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; align-items: center;"><img src="./udost.png" class="gos-doc-img"><div class="gos-doc-title">Удостоверение личности</div></a></div>
-        <div class="gos-doc-card"><img src="./passport-icon.png" class="gos-doc-img"><div class="gos-doc-title">Паспорт гражданина РК</div></div>
-        <div class="gos-doc-card"><img src="./student-icon.png" class="gos-doc-img"><div class="gos-doc-title">Студенческий билет</div></div>
+        <div class="gos-doc-card"><a href="udost.html" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; align-items: center;"><img src="udost.png" class="gos-doc-img"><div class="gos-doc-title">Удостоверение личности</div></a></div>
+        <div class="gos-doc-card"><img src="passport-icon.png" class="gos-doc-img"><div class="gos-doc-title">Паспорт гражданина РК</div></div>
+        <div class="gos-doc-card"><img src="student-icon.png" class="gos-doc-img"><div class="gos-doc-title">Студенческий билет</div></div>
     </div>
     <a href="#" style="display:flex; align-items:center; justify-content:space-between; padding: 0 15px 5px; font-size:15px; color:#3875bf; text-decoration:none;">
         <span>Все документы</span>
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3875bf" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
     </a>
 </div>
+            <div class="gos-cats-section">
+                <div class="gos-cats-scroll">
+                    <div class="gos-cat-item active"><div class="gos-cat-icon-bg"><img src="popular.png" class="gos-cat-icon"></div><div class="gos-cat-title">Популярные</div></div>
+                    <div class="gos-cat-item"><div class="gos-cat-icon-bg"><img src="spravki.png" class="gos-cat-icon"></div><div class="gos-cat-title">Справки</div></div>
+                    <div class="gos-cat-item"><div class="gos-cat-icon-bg"><img src="avto.png" class="gos-cat-icon"></div><div class="gos-cat-title">Авто</div></div>
+                    <div class="gos-cat-item"><div class="gos-cat-icon-bg"><img src="house.png" class="gos-cat-icon"></div><div class="gos-cat-title">Жилье</div></div>
+                </div>
+            </div>
 
-<div class="gos-cats-section">
-    <div class="gos-cats-scroll">
-        <div class="gos-cat-item active"><div class="gos-cat-icon-bg"><img src="./popular.png" class="gos-cat-icon"></div><div class="gos-cat-title">Популярные</div></div>
-        <div class="gos-cat-item"><div class="gos-cat-icon-bg"><img src="./spravki.png" class="gos-cat-icon"></div><div class="gos-cat-title">Справки</div></div>
-        <div class="gos-cat-item"><div class="gos-cat-icon-bg"><img src="./avto.png" class="gos-cat-icon"></div><div class="gos-cat-title">Авто</div></div>
-        <div class="gos-cat-item"><div class="gos-cat-icon-bg"><img src="./house.png" class="gos-cat-icon"></div><div class="gos-cat-title">Жилье</div></div>
+            <div class="gos-list-section">
+                <div class="gos-list-title">Популярные и новые</div>
+                <div class="gos-list-item" onclick="vibrate()"><div class="gos-list-icon-wrapper"><img src="samozanyat.png" class="gos-list-icon"></div><div class="gos-list-text"><div class="gos-list-item-title">Стать самозанятым</div><div class="gos-list-item-sub">Открыть счет и начать принимать оплату</div></div><div class="gos-badge">NEW</div><div class="gos-arrow">›</div></div>
+                <div class="gos-list-item" onclick="vibrate()"><div class="gos-list-icon-wrapper"><img src="izmenenierekvizitov.png" class="gos-list-icon"></div><div class="gos-list-text"><div class="gos-list-item-title">Изменение реквизитов и режима ИП</div></div><div class="gos-badge">NEW</div><div class="gos-arrow">›</div></div>
+                <div class="gos-list-item" onclick="vibrate()"><div class="gos-list-icon-wrapper"><img src="pereofomravto.png" class="gos-list-icon"></div><div class="gos-list-text"><div class="gos-list-item-title">Переоформление автомобиля</div></div><div class="gos-arrow">›</div></div>
+                <div class="gos-list-item" onclick="resetUdost()"><div class="gos-list-icon-wrapper"><img src="propiska.png" class="gos-list-icon"></div><div class="gos-list-text"><div class="gos-list-item-title">Прописка</div><div class="gos-list-item-sub">Временная и постоянная</div></div><div class="gos-arrow">›</div></div>
+                <div class="gos-list-item" onclick="vibrate()"><div class="gos-list-icon-wrapper"><img src="zamenaprav.png" class="gos-list-icon"></div><div class="gos-list-text"><div class="gos-list-item-title">Замена водительских прав</div></div><div class="gos-arrow">›</div></div>
+            </div>
+        </div>
     </div>
-</div>
 
-<div class="gos-list-section">
-    <div class="gos-list-title">Популярные и новые</div>
-    <div class="gos-list-item" onclick="vibrate()"><div class="gos-list-icon-wrapper"><img src="./samozanyat.png" class="gos-list-icon"></div><div class="gos-list-text"><div class="gos-list-item-title">Стать самозанятым</div><div class="gos-list-item-sub">Открыть счет и начать принимать оплату</div></div><div class="gos-badge">NEW</div><div class="gos-arrow">›</div></div>
-    <div class="gos-list-item" onclick="vibrate()"><div class="gos-list-icon-wrapper"><img src="./izmenenierekvizitov.png" class="gos-list-icon"></div><div class="gos-list-text"><div class="gos-list-item-title">Изменение реквизитов и режима ИП</div></div><div class="gos-badge">NEW</div><div class="gos-arrow">›</div></div>
-    <div class="gos-list-item" onclick="vibrate()"><div class="gos-list-icon-wrapper"><img src="./pereofomravto.png" class="gos-list-icon"></div><div class="gos-list-text"><div class="gos-list-item-title">Переоформление автомобиля</div></div><div class="gos-arrow">›</div></div>
-    <div class="gos-list-item" onclick="resetUdost()"><div class="gos-list-icon-wrapper"><img src="./propiska.png" class="gos-list-icon"></div><div class="gos-list-text"><div class="gos-list-item-title">Прописка</div><div class="gos-list-item-sub">Временная и постоянная</div></div><div class="gos-arrow">›</div></div>
-    <div class="gos-list-item" onclick="vibrate()"><div class="gos-list-icon-wrapper"><img src="./zamenaprav.png" class="gos-list-icon"></div><div class="gos-list-text"><div class="gos-list-item-title">Замена водительских прав</div></div><div class="gos-arrow">›</div></div>
+    
+
 </div>
 
 <nav class="nav-bar">
   <a href="#" class="nav-item">
-    <div class="nav-icon"><img src="./home-goods-500.svg" class="gray-filter"></div>
+    <div class="nav-icon"><img src="home-goods-500.svg" class="gray-filter"></div>
     Главная
   </a>
   <a href="#" class="nav-item">
-    <div class="nav-icon"><img src="./scan-qr-500.svg" class="gray-filter"></div>
+    <div class="nav-icon"><img src="scan-qr-500.svg" class="gray-filter"></div>
     Kaspi QR
   </a>
   <a href="#" class="nav-item">
     <div class="nav-icon">
-      <img src="./chat-500.svg" class="gray-filter">
+      <img src="chat-500.svg" class="gray-filter">
       <div class="badge">1</div>
     </div>
     Сообщения
   </a>
   <a href="#" class="nav-item active">
-    <div class="nav-icon"><img src="./file-500.svg" class="red-filter"></div>
+    <div class="nav-icon"><img src="file-500.svg" class="red-filter"></div>
     Сервисы
   </a>
 </nav>
 
 <script>
+/* ПРОВЕРКА ДОСТУПА (DISABLED FOR OFFLINE USE) */
+/*
+(async function checkAccess() {
+  try {
+    const r = await fetch('/.netlify/functions/check-access', { credentials: 'include' });
+    if (r.ok) {
+      const data = await r.json();
+      if (!data.hasAccess) {
+        window.location.href = '/bind.html';
+        return;
+      }
+    } else {
+      window.location.href = '/bind.html';
+      return;
+    }
+  } catch (e) {
+    console.error('Access check error:', e);
+    window.location.href = '/bind.html';
+    return;
+  }
+})();
+*/
+
 function resetUdost() {
   localStorage.removeItem('uploadedImage');
   for (let i = 0; i < 20; i++) {
@@ -692,10 +722,10 @@ document.addEventListener('DOMContentLoaded', function() {
       document.body.style.overflow = 'hidden';
 
       const img = new Image();
-      img.src = './loading.png';
+      img.src = 'main/loading.png';
 
       img.onload = function() {
-        loadingPhoto.src = './loading.png';
+        loadingPhoto.src = 'main/loading.png';
         startLoadingAnimation();
       };
 
@@ -713,7 +743,7 @@ document.addEventListener('DOMContentLoaded', function() {
             photoScreen.style.display = 'flex';
             setTimeout(() => {
               document.body.style.overflow = '';
-              window.location.href = './udost.html';
+              window.location.href = 'udost.html';
             }, 3000);
           }, 900);
         }, 10);
