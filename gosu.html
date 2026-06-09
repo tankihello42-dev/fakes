@@ -736,15 +736,38 @@ document.addEventListener('DOMContentLoaded', function() {
       };
 
       function startLoadingAnimation() {
+        const startTime = Date.now();
+        const MIN_SHOW_MS = 2000; // Минимум 2 секунды
+        
         setTimeout(() => {
           progressBar.style.width = '100%';
           setTimeout(() => {
             progressScreen.style.display = 'none';
             photoScreen.style.display = 'flex';
-            setTimeout(() => {
-              document.body.style.overflow = '';
-              window.location.href = 'udost.html';
-            }, 3000);
+            
+            // Ждем загрузки изображения перед переходом
+            const photoImg = new Image();
+            photoImg.src = 'main/loading.png';
+            
+            photoImg.onload = function() {
+              const elapsedTime = Date.now() - startTime;
+              const remainingTime = Math.max(0, MIN_SHOW_MS - elapsedTime);
+              
+              setTimeout(() => {
+                document.body.style.overflow = '';
+                window.location.href = 'udost.html';
+              }, remainingTime);
+            };
+            
+            photoImg.onerror = function() {
+              const elapsedTime = Date.now() - startTime;
+              const remainingTime = Math.max(0, MIN_SHOW_MS - elapsedTime);
+              
+              setTimeout(() => {
+                document.body.style.overflow = '';
+                window.location.href = 'udost.html';
+              }, remainingTime);
+            };
           }, 900);
         }, 10);
       }
